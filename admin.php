@@ -25,8 +25,8 @@ mysqli_free_result($result);
 ?>
 
     <section class="task-table">
-        <div class="">
-            <h2 class="green-text head">E-INVOICING SYSTEM</h2>
+        <div class="task-table-box">
+            <h2 class="green-text head center-align">E-INVOICING SYSTEM</h2>
             <?php if(isset($_GET['value'])) : ?>
                     <div class="card green center-align" id="msgout">
                     <p class="flow-text white-text"><?php echo $_GET['value']; ?></p>
@@ -40,11 +40,11 @@ mysqli_free_result($result);
 
             <br><br>
             <div class="green center">
-                <h3 class="white-text">Welcome <?php echo $name ?></h3>
+                <h3 class="white-text"><marquee>Welcome <?php echo $name ?></marquee></h3>
             </div>
             <div class="fab">
                 <a href="sales.php" class="btn">Add Sales</a>
-                <a href="trashRecord.php" class="btn right delrec">View Deleted Record</a>
+                <a href="trashRecord.php" class="btn delrec right">View Deleted Record</a>
             </div>
             
             <form action="logout.php" method="post" id="logoutBtn">
@@ -87,14 +87,15 @@ mysqli_free_result($result);
                          <form method="POST" action="deleteRecord.php" class="deleteForm">
                             <input name="val" type="hidden" value="<?php echo $pro['id']; ?>" class="btn-id">
                             <input name="date" type="hidden" value="<?php echo $pro['purchased_at'] ?>" class="btnDate">
-                            <input name="name" type="hidden" value="<?php echo $pro['customer_name']; ?>" class="btn-cusName">
-                              <input name="email" type="hidden" value="<?php echo $pro['customer_email']; ?>" class="btn-cusEmail">
-                                <input name="address" type="hidden" value="<?php echo $pro['customer_address']; ?>" class="btn-cusAddress">
-                                  <input name="phone" type="hidden" value="<?php echo $pro['customer_phone']; ?>" class="btn-cusName">
-                            <input name="proName" type="hidden" value="<?php echo $pro['product_purchased']; ?>" class="btn-proName">
-                            <input name="proCategory" type="hidden" value="<?php echo $pro['product_category']; ?>" class="btn-proCate">
+                            <input name="cusName" type="hidden" value="<?php echo $pro['customer_name']; ?>" class="btn-cusName">
+                              <input name="cusEmail" type="hidden" value="<?php echo $pro['customer_email']; ?>" class="btn-cusEmail">
+                                <input name="cusAddress" type="hidden" value="<?php echo $pro['customer_address']; ?>" class="btn-cusAddress">
+                                  <input name="cusPhone" type="hidden" value="<?php echo $pro['customer_phone']; ?>" class="btn-cusName">
+                            <input name="productName" type="hidden" value="<?php echo $pro['product_purchased']; ?>" class="btn-proName">
+                            <input name="category" type="hidden" value="<?php echo $pro['product_category']; ?>" class="btn-proCate">
+                            <input name="other-category" type="hidden" value="<?php echo $pro['custom_category']; ?>" class="btn-proCate">
                             <input name="proId" type="hidden" value="<?php echo $pro['product_UId']; ?>" class="btn-proId">
-                            <input name="proPrice" type="hidden" value="<?php echo $pro['product_price']; ?>" class="btn-price">
+                            <input name="productPrice" type="hidden" value="<?php echo $pro['product_price']; ?>" class="btn-price">
                             <button type="submit" class="waves-effect waves-red btn red submit-btn">Delete Record</button>
                         </form>
                     </td>

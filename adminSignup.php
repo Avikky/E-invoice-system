@@ -21,6 +21,7 @@ include 'includes/header.php';
       <div class="send">
         <button type="submit" name="submit" class="center orange white-text btn btn-flat">Sign Up</button>
       </div>
+      <a href="adminLogin.php" class="orange-text">Login here</a>
     </form>
   </div>
 </section>

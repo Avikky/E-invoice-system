@@ -1,5 +1,5 @@
 .section-search {
-    margin-top: 20rem;
+    margin-top: 10rem;
 }
 
 .section-search input {
@@ -17,19 +17,7 @@
     color: #fff;
 }
 
-#modalBtn form>button {
-    display: inline-block;
-    float: left;
-    margin-left: 36%;
-}
-
-#modalBtn a {
-    margin-right: 36%;
-}
-
-.address {
-    margin: 20px;
-}
+#invoive-page .card {}
 
 .info {
     margin-top: 15rem;
@@ -44,8 +32,6 @@
 
 .P-id {
     padding: 20px;
-    background: blue;
-    border-radius: 50%;
     margin-left: 10rem;
     margin-right: 20rem;
     margin-top: 2rem;
@@ -57,57 +43,12 @@
     padding-bottom: 40px;
 }
 
-.address h5 {
-    padding: 10px;
-    text-transform: uppercase;
-    letter-spacing: 2.5px;
-    line-height: 1.8;
-}
-
 .recipt h3 {
     margin-top: 20px;
 }
 
-@media print {
-    .address {
-        margin: 20px;
-    }
-    .info {
-        margin-top: 15rem;
-        margin-left: 5rem;
-        text-transform: uppercase;
-        letter-spacing: 2.5px;
-        line-height: 1.8;
-        word-spacing: 10px;
-        font-size: 20px;
-        font-family: 'Arial Narrow', Arial, sans-serif;
-    }
-    .P-id {
-        padding: 20px;
-        background: blue;
-        border-radius: 50%;
-        margin-left: 10rem;
-        margin-right: 20rem;
-        margin-top: 2rem;
-    }
-    .recipt {
-        height: 100%;
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
-    .address h5 {
-        padding: 10px;
-        text-transform: uppercase;
-        letter-spacing: 2.5px;
-        line-height: 1.8;
-    }
-    .recipt h3 {
-        margin-top: 20px;
-    }
-}
-
 a.delrec {
-    margin-left: 45rem;
+    margin-left: 55rem;
 }
 
 h2.head {
@@ -170,6 +111,16 @@ div.adminSection button {
     margin-right: 25%;
 }
 
-form .logoutBtn {
+.task-table-box {
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+
+.task-table .head {
     margin-left: 27rem;
+    text-align: center;
+}
+
+form .logoutBtn {
+    margin-left: 35rem;
 }

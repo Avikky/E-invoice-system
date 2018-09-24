@@ -6,10 +6,12 @@ if (!isset($_SESSION['name']) || !isset($_SESSION['pass'])) {
  }
 
 
-require 'header.php';
+require 'includes/header.php';
 include 'config/config.php';
 
-$errMsg=$succMsg='';
+
+
+$succmsg=$errmsg='';
 
 $query = 'SELECT * FROM archive ORDER BY id DESC';
 
@@ -19,11 +21,42 @@ $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 mysqli_free_result($result);
 
+
+
+if (isset($_POST['wipe-btn'])){
+    $sql =  "DELETE FROM archive";
+    $query = mysqli_query($conn, $sql);
+
+    if($query){
+        //$succmsg = "All data has been deleted from the archive";
+        header('Location: trashRecord.php?value=All data has been deleted from the archive');
+    }else{
+        //$errmsg = "Cannot not delete records!";
+          header('Location: trashRecord.php?key=Cannot not delete records!');
+    }
+  
+}
+
 ?>
 
 <div class="container">
     <h2 class="center-align red-text">DELETED RECORDS</h2>
+       <?php if(isset($_GET['value'])) : ?>
+                    <div class="card green center-align" id="msgout">
+                    <p class="flow-text white-text"><?php echo $_GET['value']; ?></p>
+                    </div>
+                <?php endif; ?>
+            <?php if(isset($_GET['key'])) : ?>
+                <div class="card orange center-align" id="msgout">
+                <p class="flow-text white-text"><?php echo $_GET['key']; ?></p>
+                </div>
+        <?php endif; ?>
+    
 <div class="card">
+    <a href="admin.php" class="right btn blue">Back to admin page</a>
+        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+            <button class="btn red" name="wipe-btn">Clear all Deleted records</button>
+        </form>
            <table class="responsive-table">
 
             <thead>
@@ -51,8 +84,10 @@ mysqli_free_result($result);
             <?php endforeach; ?>
         </table>
     </div>
+    <a href="admin.php" class="right btn blue">Back to admin page</a>
+
 </div>
 
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 ?>

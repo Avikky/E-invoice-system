@@ -13,7 +13,7 @@ $product = mysqli_fetch_assoc($result);
 mysqli_free_result($result);
 ?>
 
-<div class="container">
+<div class="container" id="invoive-page">
 <br><br>
 <button class="btn btn-larg" onclick="print()">Print Receipt</button>
     <div class="card">
@@ -22,9 +22,9 @@ mysqli_free_result($result);
             <div class="address right">
                 <h5 class="blue-text">Contact Address</h5>
             <i class="blue-text">
-                    <p>Address</p>
-                    <p>State</p>
-                    <p>Phone</p>
+                    <p><b>Address:</b> 26 Okpara Ave Enugu</p>
+                    <p><b>State:</b> Enugu State</p>
+                    <p><b>Receipt-ID:</b><?php echo $product['product_UId']; ?></p>
                     <b>Date & Time:</b> <?php echo $product['purchased_at']; ?>
                 </i>
             </div>

@@ -57,5 +57,3 @@ document.querySelector('button#create-newCat').addEventListener('click', functio
   }
 
 })
-
-// reloading the sales page after form submition

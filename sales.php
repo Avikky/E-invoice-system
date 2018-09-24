@@ -82,6 +82,7 @@ if(isset($_POST['submit'])){
         //Capitalize custumer name and Product name
         $capCusName = ucwords($cusName);
         $capProductName = ucwords($productName);
+        
 
         //Loading data into the database
         $query = "INSERT INTO sales_record(customer_name, customer_email, customer_address,  	customer_phone, product_purchased, product_category, custom_category, product_price, product_UId) VALUES('$capCusName', '$cusEmail', '$cusAddress', '$cusPhone', '$capProductName', '$productCate', '$customCat', '$realProductPrice', '$product_UID')";
