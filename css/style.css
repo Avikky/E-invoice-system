@@ -124,3 +124,25 @@ div.adminSection button {
 form .logoutBtn {
     margin-left: 35rem;
 }
+
+section .cover {
+    display: flex;
+    margin-top: 12rem;
+    background: #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    flex-direction: column;
+    justify-content: center;
+}
+
+section .cover .home {
+    padding: 1rem;
+}
+
+section .cover .home a {
+    border-radius: 10px;
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
