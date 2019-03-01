@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+$name = $_SESSION['name'] ;
+$pass = $_SESSION['pass'];
+
+if (!isset($_SESSION['name']) || !isset($_SESSION['pass'])) {
+     header('Location: adminLogin.php?value=You must be logged in as admin');
+ }
+
+include 'config/config.php';
+
 include 'includes/header.php';
 
 
@@ -18,32 +29,11 @@ include 'includes/header.php';
             <a href="" class="btn-large orange">INVENTORY</a>
         </div>
          <div class=" center home">
-            <a href="" class="btn-large orange">SUMMARY</a>
+            <a href="" class="btn-large red">SUMMARY</a>
         </div>
        </div>
     </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php
     include ('includes/footer.php');

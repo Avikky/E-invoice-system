@@ -8,7 +8,7 @@ if (!isset($_SESSION['name']) || !isset($_SESSION['pass'])) {
 require 'includes/header.php';
 include 'config/config.php';
 
-$cusName =$cusEmail=$cusAddress=$cusPhone =$productName=$productCate=$productPrice=$product_UID= $errMsg= $succMsg=$ext=$realVal=$rand=$realProductPrice =  " ";
+$cusName =$cusEmail=$cusAddress=$cusPhone =$productName=$productCate=$productPrice=$product_UID= $errMsg= $succMsg=$ext=$realVal=$rand=$realProductPrice = $label =  " ";
 
 function validateInput($data){
    $data = htmlentities($data);
@@ -28,18 +28,19 @@ if(isset($_POST['submit'])){
     $cusAddress = validateInput($_POST['cusAddress']);
     $cusPhone = validateInput($_POST['cusPhone']);
     $productName =validateInput($_POST['productName']);
+    $label =    validateInput($_POST['label']);
     @$productCate = validateInput($_POST['category']);
     $customCat = validateInput($_POST['other-category']);
     $productPrice = validateInput($_POST['productPrice']);
 
-    if (empty($cusName) || empty($cusEmail) || empty($cusAddress) || empty($cusPhone) || empty($productName) || empty($productPrice) ) {
+    if (empty($cusName) || empty($cusEmail) || empty($cusAddress) || empty($cusPhone) || empty($productName) || empty($productPrice) || empty($label) ) {
         $errMsg = "Fill in all field";
     }else{
         //Validating Category
         if ($productCate === 'Electronics') {
             $ext = 'elect/';
             $rand = mt_rand(100,10000000);
-            if ($rand === true) {
+            if ($rand) {
                 $product_UID = $ext.$rand;
             }else{
                 $errMsg = 'No category was selected';
@@ -48,7 +49,7 @@ if(isset($_POST['submit'])){
         elseif($productCate === 'Phones'){
             $ext = 'phone/';
             $rand = mt_rand(100,10000000);
-            if ($rand === true) {
+            if ($rand) {
                $product_UID = $ext.$rand;
             }else{
                 $errMsg = 'No category was selected';
@@ -57,7 +58,7 @@ if(isset($_POST['submit'])){
         elseif ($productCate === 'Phone Accessories') {
              $ext = 'phoneAcces/';
             $rand = mt_rand(100,10000000);
-            if ($rand == true) {
+            if ($rande) {
                 $product_UID = $ext.$rand;
             }else{
                 $errMsg = 'No category was selected';
@@ -68,33 +69,45 @@ if(isset($_POST['submit'])){
                 $productCate = str_replace(' ', '', ucwords($customCat));
              $ext = $productCate.'/';
             $rand = mt_rand(100,10000000);
-            if ($rand == true) {
+            if ($rand) {
                 $product_UID = $ext.$rand;
             }else{
                 $errMsg = 'No category was selected';
             }
         }
-        //adding a comma to the  product price
         
         $realProductPrice = $productPrice;
         
 
         //Capitalize custumer name and Product name
         $capCusName = ucwords($cusName);
-        $capProductName = ucwords($productName);
-        
+        //$capProductName = ucwords($productName); no longer using it.
 
-        //Loading data into the database
-        $query = "INSERT INTO sales_record(customer_name, customer_email, customer_address,  	customer_phone, product_purchased, product_category, custom_category, product_price, product_UId) VALUES('$capCusName', '$cusEmail', '$cusAddress', '$cusPhone', '$capProductName', '$productCate', '$customCat', '$realProductPrice', '$product_UID')";
+        //querying the the sales table for data
+     
 
-        $result = mysqli_query($conn, $query);
+        //querying stock table for data
+        $sql = "SELECT * FROM stock WHERE label = '$label'";
+        $runQuery = mysqli_query($conn, $sql);
+        $fetchData = mysqli_fetch_assoc($runQuery);
+        echo $fetchData['total_stock'];
+        $return = mysqli_num_rows($runQuery) ;
+        if($return > 0){
+            //Loading data into the database
+            $query = "INSERT INTO sales_record(customer_name, customer_email, customer_address,  	customer_phone, product_purchased, label, product_category, custom_category, product_price, product_UId) VALUES('$capCusName', '$cusEmail', '$cusAddress', '$cusPhone', '$productName', '$label', '$productCate', '$customCat', '$realProductPrice', '$product_UID')";
+            $result = mysqli_query($conn, $query);
+            if ($result) {
+                $succMsg = 'Sales added successfully';
 
-        if ($result === true) {
-            $succMsg = 'Sales added successfully';
+            }else{
+                $errMsg =  'Error! cannot load to database';
+            }
 
         }else{
-            $errMsg =  'Error! cannot load to database';
+            $errMsg = 'Out of Stock, Please check sales report';
         }
+        
+
     }
 }
 
@@ -144,6 +157,10 @@ if(isset($_POST['submit'])){
                 <input placeholder="Product Name" id="productName" name="productName" type="text" class="validate">
                 </div>
                  <div class="input-field">
+                <span><b>Product Model/Label</b></span>
+                <input placeholder="e.g iphone 5x (5x is the Model)" id="productName" name="label" type="text" class="validate">
+                </div>
+                 <div class="input-field">
                 <span><b>Product Category</b></span>
                 <select name="category">
                   <option value="" disabled selected>Select Product Category</option>
@@ -154,7 +171,7 @@ if(isset($_POST['submit'])){
                 </div>
                 <button id="create-newCat" class="btn btn-large blue">Create custom category</button>
                 <div class="input-field" style="display: none;" id="other-Cat" >
-                <span><b>Custome Product Category</b></span>
+                <span><b>Custom Product Category</b></span>
                      <input name="other-category" type="text" placeholder="Type your custom category here">
                 </div>
                 <div class="input-field">

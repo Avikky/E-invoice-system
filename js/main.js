@@ -31,12 +31,17 @@ $('form#search').submit(function (e) {
   }
 });
 
-var adminHedErr =
-  $.get("admin.php?value=Record%20deleted%20successfully", function () {
+var hideCallBackResponse = function (action) {
+  $.get(action, function () {
     setTimeout(function () {
       $('#msgout').remove();
     }, 3000); //5secs
   });
+}
+
+hideCallBackResponse("admin.php?value=Record%20deleted%20successfully")
+hideCallBackResponse("addstock.php?value=Stock updated successfully")
+
 
 //print fuction for invoice page
 

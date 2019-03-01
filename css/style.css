@@ -58,19 +58,6 @@ h2.head {
     margin-left: 16rem;
 }
 
-/*
-div.adminSection{
-  margin-left: 15rem;
-  background: #33691e;
-  color: #ff9100;
-  margin-top: 8rem;
-  width: 60%;
-  height: 47%;
-  border-radius: 3px;
-  padding-bottom: 20px;
-  padding-top: 10px;
-}
-*/
 
 #landingbody {
     display: flex;
@@ -145,4 +132,8 @@ section .cover .home a {
     border-radius: 10px;
     padding-left: 5rem;
     padding-right: 5rem;
+}
+
+div .report-btn {
+    margin-top: 3rem;
 }

@@ -34,7 +34,7 @@ function validateInput($data){
                       session_start();
                       $_SESSION['name'] = $fetchData['username'];
                       $_SESSION['pass'] = $fetchData['password'];
-                      header("Location: admin.php");
+                      header("Location: hompage.php");
                       exit();
                 }
               }
