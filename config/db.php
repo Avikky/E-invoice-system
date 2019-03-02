@@ -12,13 +12,18 @@ $conn = new mysqli($server, $username, $password, $db);
 $sql = $sql1 = $sql2 = $sql3 = $sql4 = $conn = '';
     //CREATE DATABASE
 
-    $sql = "CREATE DATABASE invoiceDB";
-    if (mysqli_query($conn, $sql)) {
-        echo "Database created successfully";
-    } else {
-        echo "Error creating database: ". mysqli_error($conn);
-    }
+    // $sql = "CREATE DATABASE invoiceDB";
+    // if (mysqli_query($conn, $sql)) {
+    //     echo "Database created successfully";
+    // } else {
+    //     echo "Error creating database: ". mysqli_error($conn);
+    // }
 
+    if($conn) {
+        echo 'database connected';
+    }else {
+        echo 'cannot connect to database';
+    }
 
    $conn = new mysqli($server, $username, $password, $db);
 
