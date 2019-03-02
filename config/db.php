@@ -1,12 +1,13 @@
 <?php
 
-   $conn = mysqli_connect('localhost', 'root', '');
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-    //checking the connection
-    if(mysqli_connect_errno()){
-        //failed conn
-        echo "Cannot connect to Database".mysqli_connect_errno();
-    }
+$server = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$db = substr($url["path"], 1);
+
+$conn = new mysqli($server, $username, $password, $db);
 
 $sql = $sql1 = $sql2 = $sql3 = $sql4 = $conn = '';
     //CREATE DATABASE
@@ -20,7 +21,7 @@ $sql = $sql1 = $sql2 = $sql3 = $sql4 = $conn = '';
 
     //UNCOMMENT THE FIRST CREATE TABLE SCRIPT THEN GO DOWN TO LINE 52-58 AND ALSO UNCOMENT IT SO AS TO CREATE THIS TABLES IN YOUR XAMP MYSQL DATABASE
 
-    $conn = mysqli_connect('localhost', 'root', '');
+   $conn = new mysqli($server, $username, $password, $db);
 
     //checking the connection
     if(mysqli_connect_errno()){
