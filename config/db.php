@@ -1,11 +1,39 @@
 <?php
 
-$url = parse_url(getenv("mysql://b92004bf80e8d1:d63dbb39@us-cdbr-iron-east-03.cleardb.net/heroku_11ede1e4b4b243a?reconnect=true"));
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 $server = $url["host"];
 $username = $url["user"];
 $password = $url["pass"];
 $db = substr($url["path"], 1);
+
+$active_group = 'default';
+$query_builder = TRUE;
+
+
+$db['default'] = array(
+    'dsn' => '',
+    'hostname' => 'us-cdbr-iron-east-03.cleardb.net',
+    'username' => 'b92004bf80e8d1',
+    'passsword' => 'd63dbb39',
+    'database' => 'heroku_11ede1e4b4b243a',
+    'dbdriver' => 'mysql',
+    'dbprefix' => '',
+    'pconnect' => FALSE;
+    'db_debug' => (ENVIRONMENT !== 'production'),
+    'cache_on' => FALSE,
+    'cachedir' => '',
+    'char_set' => 'utf8',
+    'dbcollat' => 'utf8_general_ci',
+    'swap_pre' => '',
+    'encrypt' => FALSE,
+    'compress' => FALSE,
+    'striction' => FALSE,
+    'failover' => array(),
+    'save_queries' => TRUE;
+);
+
+
 
 $conn = new mysqli($server, $username, $password, $db);
 
