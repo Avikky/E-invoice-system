@@ -7,37 +7,14 @@ $username = $url["user"];
 $password = $url["pass"];
 $db = substr($url["path"], 1);
 
-$active_group = 'default';
-$query_builder = TRUE;
-
-
-$db['default'] = array(
-    'dsn' => '',
-    'hostname' => 'us-cdbr-iron-east-03.cleardb.net',
-    'username' => 'b92004bf80e8d1',
-    'passsword' => 'd63dbb39',
-    'database' => 'heroku_11ede1e4b4b243a',
-    'dbdriver' => 'mysql',
-    'dbprefix' => '',
-    'pconnect' => FALSE;
-    'db_debug' => (ENVIRONMENT !== 'production'),
-    'cache_on' => FALSE,
-    'cachedir' => '',
-    'char_set' => 'utf8',
-    'dbcollat' => 'utf8_general_ci',
-    'swap_pre' => '',
-    'encrypt' => FALSE,
-    'compress' => FALSE,
-    'striction' => FALSE,
-    'failover' => array(),
-    'save_queries' => TRUE;
-);
+// $active_group = 'default';
+//query_builder = TRUE;
 
 
 
 $conn = new mysqli($server, $username, $password, $db);
 
-$sql = $sql1 = $sql2 = $sql3 = $sql4 = $conn = '';
+// $sql = $sql1 = $sql2 = $sql3 = $sql4 = $conn = '';
     //CREATE DATABASE
 
     // $sql = "CREATE DATABASE invoiceDB";
@@ -53,7 +30,7 @@ $sql = $sql1 = $sql2 = $sql3 = $sql4 = $conn = '';
         echo 'cannot connect to database';
     }
 
-   $conn = new mysqli($server, $username, $password, $db);
+//    $conn = new mysqli($server, $username, $password, $db);
 
 //     //checking the connection
 //     if(mysqli_connect_errno()){
